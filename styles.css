@@ -1,0 +1,50 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #282c34;
+  color: white;
+}
+
+.tabs {
+  display: flex;
+  background-color: #20232a;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.tabs button:hover {
+  background-color: #61dafb;
+}
+
+#editor {
+  flex: 1;
+  height: calc(100vh - 100px);
+}
+
+.preview {
+  width: 100%;
+  height: 50%;
+  border: none;
+}
