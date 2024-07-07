@@ -3,33 +3,26 @@ require(['vs/editor/editor.main'], function () {
   let editors = {};
   let currentTab = 'html';
 
+  // Load saved content from localStorage
+  const loadEditorContent = (language) => {
+    return localStorage.getItem(`editorContent_${language}`) || '';
+  };
+
   editors.html = monaco.editor.create(document.getElementById('editor'), {
-    value: [
-      '<!DOCTYPE html>',
-      '<html lang="en">',
-      '<head>',
-      '  <meta charset="UTF-8">',
-      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">',
-      '  <title>Document</title>',
-      '</head>',
-      '<body>',
-      '  <h1>Hello World</h1>',
-      '</body>',
-      '</html>'
-    ].join('\n'),
+    value: loadEditorContent('html'),
     language: 'html',
     theme: 'vs-dark'
   });
 
   editors.css = monaco.editor.create(document.getElementById('editor'), {
-    value: 'body {\n  font-family: Arial, sans-serif;\n}\n',
+    value: loadEditorContent('css'),
     language: 'css',
     theme: 'vs-dark'
   });
   editors.css.getContainerDomNode().style.display = 'none';
 
   editors.javascript = monaco.editor.create(document.getElementById('editor'), {
-    value: 'console.log("Hello, World!");',
+    value: loadEditorContent('javascript'),
     language: 'javascript',
     theme: 'vs-dark'
   });
@@ -78,4 +71,11 @@ require(['vs/editor/editor.main'], function () {
     preview.write(htmlContent + cssContent + jsContent);
     preview.close();
   };
+
+  // Save editor content to localStorage before the page is unloaded
+  window.addEventListener('beforeunload', function () {
+    for (const lang in editors) {
+      localStorage.setItem(`editorContent_${lang}`, editors[lang].getValue());
+    }
+  });
 });
