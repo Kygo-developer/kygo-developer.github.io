@@ -3,21 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web-Editor</title>
+  <title>Advanced IDE with Monaco Editor</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Advanced IDE</h1>
+      <h1>Web-Editor</h1>
     </header>
     <div class="tabs">
       <button onclick="switchTab('html')">HTML</button>
       <button onclick="switchTab('css')">CSS</button>
       <button onclick="switchTab('javascript')">JavaScript</button>
     </div>
-    <div id="editor"></div>
-    <iframe id="preview" class="preview"></iframe>
+    <div class="editor-container">
+      <div id="htmlEditor" class="editor"></div>
+      <div id="cssEditor" class="editor"></div>
+      <div id="jsEditor" class="editor"></div>
+    </div>
+    <div class="preview-container">
+      <h2>Live Preview</h2>
+      <iframe id="preview" class="preview"></iframe>
+    </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/loader.min.js"></script>
   <script src="script.js"></script>
